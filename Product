@@ -1,0 +1,59 @@
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class Product {
+	private HashSet<String> name = new HashSet<String>();
+	private char size;
+	protected HashMap<String, Double> productDatabase = new HashMap<String, Double>();
+	
+	public Product() {
+		name.add("T-shirt");
+		name.add("Jeans");
+		name.add("Sweatshirt");
+		name.add("iPhone");
+		name.add("MacBook");
+		name.add("Camera");
+		name.add("Frying Pan");
+		name.add("Vacuum");
+		name.add("Lamp");
+		
+		productDatabase.put("T-shirt", 25.00);
+		productDatabase.put("Jeans", 50.00);
+		productDatabase.put("Sweatshirt", 40.00);
+		productDatabase.put("iPhone", 1200.00);
+		productDatabase.put("MacBook", 2600.00);
+		productDatabase.put("Camera", 2000.00);
+		productDatabase.put("Frying Pan", 80.00);
+		productDatabase.put("Vacuum", 500.00);
+		productDatabase.put("Lamp", 35.00);
+		
+	}
+	
+	public Double getPrice(String n){
+		return productDatabase.get(n);
+	}
+	
+	public void addProduct(String n, Double p) {
+		productDatabase.put(n, p);
+		name.add(n);
+	}
+	
+	public void removeProduct(String n, Double p) {
+		productDatabase.remove(n);
+		name.remove(n);
+	}
+	
+	public void printProducts() {
+		Iterator itr = name.iterator();
+		
+		while (itr.hasNext()) {
+            System.out.println(itr.next());
+        }
+	}
+	
+	
+	
+	
+
+}
