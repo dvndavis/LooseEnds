@@ -15,6 +15,7 @@ public class userInterfaceMain {
 		
 		
 		char userType;
+		char[] sizingResponse = new char[]{'s','m','l'};
 		int categorySelection;
 		char productSelection;
 		char cartResponse;
@@ -57,6 +58,11 @@ public class userInterfaceMain {
 					
 					while(true)
 						if(productSelection == 'A' || productSelection == 'a') {
+							System.out.print("Please select your size: ");
+							for(char size : sizingResponse) {
+								System.out.print(size + " ");
+							}
+							
 							System.out.println("A T-shirt has been added to your cart!");
 							cartList.cartAdd("T-shirt");
 							break;
