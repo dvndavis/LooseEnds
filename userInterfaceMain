@@ -1,0 +1,186 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class userInterfaceMain {
+		public static void main(String[] args) {
+			
+		Scanner scnr = new Scanner(System.in); 
+		
+		//initialization of a HashMap for the products
+		Product productDatabase = new Product();
+		//initialization of the cart
+		Cart cartList = new Cart();
+		//initialization of a manager
+		WebsiteManager theManager = new WebsiteManager("themanager", "password123");
+		
+		
+		char userType;
+		int categorySelection;
+		char productSelection;
+		char cartResponse;
+		char initialResponse;
+		char payResponse;
+		String username;
+		String password;
+		String managerResponse;
+		
+		
+		System.out.println("Are you a Customer(C) or Manager(M)? ");
+		initialResponse = scnr.next().charAt(0);
+		
+		//establishing the setup for the customers
+		if (initialResponse == 'C' || initialResponse == 'c') {
+			do {
+			System.out.println("Would you like to continue shopping(S) or go to your shopping cart(K), type q to quit? ");
+			userType = scnr.next().charAt(0);
+		
+			//if they choose to continue shopping
+			if (userType == 'S' || userType == 's') {
+				
+			//lists the categories
+				System.out.println("Pick from the following categories:" );
+				System.out.println("1. Clothing");
+				System.out.println("2. Technology");
+				System.out.println("3. Home Improvement");
+				categorySelection = scnr.nextInt();
+				
+				//goes into clothing category
+				if (categorySelection == 1) {
+					System.out.println("Please select from our premium items! (a, b, or c)");
+					System.out.print("a. T-shirt for $");
+					System.out.println(productDatabase.getPrice("T-shirt"));
+					System.out.print("b. Jeans for $");
+					System.out.println(productDatabase.getPrice("Jeans"));
+					System.out.print("c. Sweatshirt for $");
+					System.out.println(productDatabase.getPrice("Sweatshirt"));
+					productSelection = scnr.next().charAt(0);
+					
+					while(true)
+						if(productSelection == 'A' || productSelection == 'a') {
+							System.out.println("A T-shirt has been added to your cart!");
+							cartList.cartAdd("T-shirt");
+							break;
+						}else if(productSelection == 'B' || productSelection == 'b') {
+							System.out.println("Jeans have been added to your cart!");
+							cartList.cartAdd("Jeans");
+							break;
+						}else if(productSelection == 'C' || productSelection == 'c') {
+							System.out.println("A Sweatshirt has been added to your cart!");
+							cartList.cartAdd("Sweatshirt");
+							break;
+						}
+					
+				}
+				//goes into technology category
+				else if (categorySelection == 2) {
+					System.out.println("Please select from our premium items! (a, b, or c)");
+					System.out.print("a. iPhone for $");
+					System.out.println(productDatabase.getPrice("iPhone"));
+					System.out.print("b. MacBook for $");
+					System.out.println(productDatabase.getPrice("MacBook"));
+					System.out.print("c. Camera for $");
+					System.out.println(productDatabase.getPrice("Camera"));
+					productSelection = scnr.next().charAt(0);
+					
+					while(true)
+						if(productSelection == 'A' || productSelection == 'a') {
+							System.out.println("An iPhone has been added to your cart!");
+							cartList.cartAdd("iPhone");
+							break;
+						}else if(productSelection == 'B' || productSelection == 'b') {
+							System.out.println("A MacBook has been added to your cart!");
+							cartList.cartAdd("MacBook");
+							break;
+						}else if(productSelection == 'C' || productSelection == 'c') {
+							System.out.println("A Camera has been added to your cart!");
+							cartList.cartAdd("Camera");
+							break;
+						}
+				}
+				
+				//goes into home improvement category
+				else if (categorySelection == 3) {
+					System.out.println("Please select from our premium items! (a, b, or c)");
+					System.out.print("a. Frying Pan for $");
+					System.out.println(productDatabase.getPrice("Frying Pan"));
+					System.out.print("b. Vacuum for $");
+					System.out.println(productDatabase.getPrice("Vacuum"));
+					System.out.print("c. Lamp for $");
+					System.out.println(productDatabase.getPrice("Lamp"));
+					productSelection = scnr.next().charAt(0);
+					
+					while(true)
+						if(productSelection == 'A' || productSelection == 'a') {
+							System.out.println("A Frying Pan has been added to your cart!");
+							cartList.cartAdd("Frying Pan");
+							break;
+						}else if(productSelection == 'B' || productSelection == 'b') {
+							System.out.println("A Vacuum has been added to your cart!");
+							cartList.cartAdd("Vacuum");
+							break;
+						}else if(productSelection == 'C' || productSelection == 'c') {
+							System.out.println("A Lamp has been added to your cart!");
+							cartList.cartAdd("Lamp");
+							break;
+						}
+					
+				}
+			}
+				
+			//if they choose to go to cart
+			else if (userType == 'k' || userType == 'K') {
+				System.out.println("We hope you found everything you were looking for and more!");
+				System.out.println("Here is your cart: ");
+				System.out.println("-------------------------------------------");
+				cartList.printCartList();
+				System.out.println("-------------------------------------------");
+				System.out.println("Your cart's total is: " + cartList.cartTotal());
+				System.out.println();
+				System.out.println("Would you like to proceed and pay? (Y or N)");
+				payResponse = scnr.next().charAt(0);
+				
+				//if they want to pay
+				//while(true)
+					if (payResponse == 'y' || payResponse == 'Y') {
+						cartList.clearCart();
+						System.out.println("Thank you for your purchase!");
+						System.out.println("Your package should be delivered in 3-4 business days.");
+						break;
+					}
+					//if they do not want to pay
+					else if (payResponse == 'n' || payResponse == 'N') {
+					}
+			}
+			
+				
+		}while(userType != 'q' || userType != 'Q');
+			System.out.println("*******************************************");
+			System.out.println("Thank you, come again!");
+			System.out.println("*******************************************");
+	}
+		
+		//establishing setup for the manager
+		else if (initialResponse == 'M' || initialResponse == 'm') {
+			System.out.print("Username: ");
+			username = scnr.next();
+			//check and see if the username exists
+			if (username.equals(theManager.getUsername())) {
+				System.out.println("Password: ");
+				password = scnr.next();
+				if (password.equals(theManager.getPassword())) {
+					System.out.println("Welcome, Mr. Manager!");
+					System.out.println("Would you like to add/remove a product(A) OR change the price of an object(P)?");
+					
+				}
+			}
+		}
+		
+}
+	
+	
+			
+			
+			
+		
+			
+}
