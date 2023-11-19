@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+
+public class Cart extends Product{
+	
+	
+	private double totalPrice;
+	private ArrayList<String> cartList = new ArrayList<String>();
+	
+	public Cart() {
+		totalPrice = 0;
+	}
+	
+	public void cartAdd(String n) {
+		cartList.add(n);
+	}
+	
+	public void printCartList() {
+		for(int i = 0; i < cartList.size(); i++) {   
+		    System.out.println(cartList.get(i));
+		}
+	}
+	
+	public double cartTotal() {
+		String item;
+		
+		for(int i = 0; i < cartList.size(); i++) {
+			item = cartList.get(i);
+			
+			totalPrice += productDatabase.get(item);
+		}
+		return totalPrice;
+	}
+	
+	public void clearCart() {
+		totalPrice = 0;
+		cartList.clear();
+	}
+	
+	
+
+}
