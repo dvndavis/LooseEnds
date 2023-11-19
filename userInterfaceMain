@@ -15,7 +15,8 @@ public class userInterfaceMain {
 		
 		
 		char userType;
-		char[] sizingResponse = new char[]{'s','m','l'};
+		char[] sizingArray = new char[]{'s','m','l'};
+		char sizingResponse;
 		int categorySelection;
 		char productSelection;
 		char cartResponse;
@@ -59,11 +60,19 @@ public class userInterfaceMain {
 					while(true)
 						if(productSelection == 'A' || productSelection == 'a') {
 							System.out.print("Please select your size: ");
-							for(char size : sizingResponse) {
+							for(char size : sizingArray) {
 								System.out.print(size + " ");
 							}
-							
-							System.out.println("A T-shirt has been added to your cart!");
+							sizingResponse = scnr.next().charAt(0);
+							//establishing shirt sizing
+							if(sizingResponse == 's' || sizingResponse == 'S') {
+								System.out.println("A small T-shirt has been added to your cart!");
+							}else if(sizingResponse == 'm' || sizingResponse == 'M') {
+								System.out.println("A medium T-shirt has been added to your cart!");
+							} else if(sizingResponse == 'l' || sizingResponse == 'L') {
+								System.out.println("A large T-shirt has been added to your cart!");
+							}
+							//System.out.println("A T-shirt has been added to your cart!");
 							cartList.cartAdd("T-shirt");
 							break;
 						}else if(productSelection == 'B' || productSelection == 'b') {
@@ -175,7 +184,7 @@ public class userInterfaceMain {
 				password = scnr.next();
 				if (password.equals(theManager.getPassword())) {
 					System.out.println("Welcome, Mr. Manager!");
-					System.out.println("Would you like to add/remove a product(A) OR change the price of an object(P)?");
+					System.out.println("Would you like to add/remove a product(A) OR change the price of an object(P), OR click (L) to logout");
 					
 				}
 			}
