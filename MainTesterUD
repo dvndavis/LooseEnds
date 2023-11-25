@@ -1,0 +1,50 @@
+
+import java.util.Scanner; 
+public class MainTester {
+
+	public static void main(String[] args) {
+		
+	Scanner keyboard = new Scanner(System.in);
+	
+	TrialSetup.ScenarioCategories(); 
+	TrialSetup.SetupScenarioProducts(); 
+
+	int UserStatus = 0; 
+	Cart UserCart = new Cart();
+	
+	while(true) {
+	
+		
+		
+	if(UserStatus == 0) {
+			System.out.println("1 for Customer path, 2 for Manager path, 5 to end Program"); //prompts user to determine status come back here 
+	
+			UserStatus = keyboard.nextInt(); //gets the UserStatus
+			keyboard.nextLine(); 
+	}
+
+
+	if(UserStatus ==1) {
+			UserStatus = CustomerOptions.customerBranch(keyboard, UserCart); 
+	}
+	
+
+	if(UserStatus == 2) {
+			ManagerOptions.managerChoices(keyboard);
+			UserStatus = 0; 
+	}
+	
+	
+	if(UserStatus == 4) {
+	System.out.println("Program is working good ");
+	break; 
+	// insert a method to send back to main here 
+	}
+	
+	
+	if(UserStatus == 5) {
+	System.out.println("Program Closing"); 
+	break; 
+	}
+	}}}
+	
