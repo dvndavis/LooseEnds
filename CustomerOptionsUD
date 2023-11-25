@@ -1,0 +1,152 @@
+import java.util.Scanner;
+import java.util.HashSet;
+public class CustomerOptions {
+
+
+private static HashSet<String> userEmails = new HashSet<>(); 
+	
+
+private static boolean isValidEmail(String email) {
+	return email != null && email.contains("@") && email.contains(".");
+}
+
+protected static void getEmailList() {
+	for(String email : userEmails) {
+		System.out.println(email); 
+	}
+}
+
+protected static void emailSignIn(Scanner keyboard) {
+	System.out.println("Please enter your email to sign in:");
+    String email = keyboard.nextLine();
+    
+    while (!isValidEmail(email) || userEmails.contains(email)) {
+        if (!isValidEmail(email)) {
+            System.out.println("Invalid email. Please try again:");
+        } else {
+            System.out.println("Email already exists. Please try another one:");
+        }
+        email = keyboard.nextLine();
+    }
+    userEmails.add(email); // Add new email to the set
+    System.out.println("Email added successfully!");
+    System.out.println(); 
+    System.out.println(); 
+}
+
+//Main logic if customer pathway taken 
+public static int customerBranch(Scanner keyboard, Cart UserCart) { 
+	
+	CustomerOptions.emailSignIn(keyboard);    
+	        
+	char userChar = 'z';
+	char inputChar; 
+	String userInput; 
+	
+		ProductInfo.showCategories(); //Shows available Categories
+	
+		String searchCategory = keyboard.nextLine(); 
+	
+		ProductManager.searchByCategory(searchCategory); //Prints Products within the category passed in to console 
+	
+		System.out.println("Type ID# of product to add to cart");//prompts to 
+		System.out.println("Type 'B' to go back to categories");
+		System.out.println("Type 'C' to view Cart"); 
+		System.out.println("Immediate Program Close press Q");
+		
+		userInput = keyboard.nextLine(); 
+	
+		inputChar = userInput.charAt(0); 
+		
+		
+		
+while (true) {
+	
+
+	
+	if (userChar == 'B' || userChar == 'b') {
+	ProductInfo.showCategories(); //Shows available Categories
+	
+	searchCategory = keyboard.nextLine(); 
+	
+	ProductManager.searchByCategory(searchCategory); //Prints Products within the category passed in to console 
+	
+	System.out.println("Type ID# of product to add to cart");//prompts to 
+	System.out.println("Type 'B' to go back to categories");
+	System.out.println("Type 'C' to view Cart"); 
+	System.out.println("Immediate Program Close press Q");
+	
+	userInput = keyboard.nextLine(); 
+	
+	inputChar = userInput.charAt(0); 
+	}
+	
+	if(Character.isAlphabetic(inputChar)){
+		userChar = inputChar; 
+	}
+	
+	if(userChar == 'C' || userChar == 'c') {
+		UserCart.viewCart(); 
+	
+		System.out.println(); 
+		System.out.println("Back to Categories 'B', Checkout 'O', Head back to main console 'F'"); 
+		System.out.println("'R' to start removing items from cart"); 
+		System.out.println("Immediate Program Close press Q");
+		
+		userInput = keyboard.nextLine(); 
+		userChar = userInput.charAt(0); 
+	}
+	if(userChar == 'R' || userChar == 'r') {
+		UserCart.viewCart(); 
+		
+		System.out.println("Select ID# of product to remove"); 
+		Long removalItemID = keyboard.nextLong(); 
+		keyboard.nextLine(); 
+		System.out.println("Select the quantity you would like to remove."); 
+		int quantityToRemove = keyboard.nextInt();
+		keyboard.nextLine();
+		
+		UserCart.removeFromCart(removalItemID, quantityToRemove);
+	}
+	
+	if(userChar == 'O' || userChar == 'o') {
+		
+		System.out.println("Your total is " + UserCart.calcCartTotal()); 
+		System.out.println("Would you like to Finish Shopping or go Back to shopping? F or B."); 
+		System.out.println("Immediate Program Close press Q");
+		
+		userInput = keyboard.nextLine(); 
+		userChar = userInput.charAt(0); 
+	}	
+	
+	if (userChar == 'F' || userChar =='f') { 
+		return 0; 
+	}
+	if (userChar == 'Q' || userChar == 'q') {
+		return 5; 
+	}
+	
+	else if(Character.isDigit(inputChar)|| Character.isDigit(userChar))  {
+		userChar = 'X'; 
+		Long productToAdd = Long.parseLong(userInput); 
+		UserCart.addToCart(productToAdd);
+		userInput = keyboard.nextLine(); 
+		inputChar = userInput.charAt(0); 
+		if(Character.isAlphabetic(inputChar)){
+			userChar = inputChar; 
+		}
+	}
+	
+	else {
+		continue; 
+	}
+	
+	
+}}}
+
+	
+	
+	
+
+	
+	
