@@ -1,0 +1,97 @@
+
+public class TrialSetup {
+
+	public static void ScenarioCategories() {
+		ProductInfo.addCategory("Clothing"); 
+		ProductInfo.addCategory("Technology"); 
+		ProductInfo.addCategory("Home Improvement");
+	}
+	
+	
+	public static void SetupScenarioProducts() {
+		ClothingInfo newProduct = new ClothingInfo("Red Shirt", 99.99, 33,"Clothing", "XL"); 
+		ProductManager.addProduct(newProduct);
+		
+		ClothingInfo newProduct1 = new ClothingInfo("Blue Jeans", 59.99, 20, "Clothing", "M");
+		ProductManager.addProduct(newProduct1);
+
+		ClothingInfo newProduct2 = new ClothingInfo("Green Jacket", 129.99, 15, "Clothing", "L");
+		ProductManager.addProduct(newProduct2);
+
+		ClothingInfo newProduct3 = new ClothingInfo("Black T-Shirt", 29.99, 50, "Clothing", "S");
+		ProductManager.addProduct(newProduct3);
+
+		ClothingInfo newProduct4 = new ClothingInfo("White Sneakers", 79.99, 25, "Clothing", "42");
+		ProductManager.addProduct(newProduct4);
+
+		ClothingInfo newProduct5 = new ClothingInfo("Striped Socks", 9.99, 100, "Clothing", "One Size");
+		ProductManager.addProduct(newProduct5);
+
+		ClothingInfo newProduct6 = new ClothingInfo("Leather Belt", 34.99, 40, "Clothing", "L");
+		ProductManager.addProduct(newProduct6);
+
+		ClothingInfo newProduct7 = new ClothingInfo("Woolen Scarf", 19.99, 30, "Clothing", "One Size");
+		ProductManager.addProduct(newProduct7);
+		
+		ProductInfo newProduct8 = new ProductInfo("Red Gaming Headset", 59.99, 200, "Technology"); 
+		ProductManager.addProduct(newProduct8);
+		
+		ProductInfo newProduct9 = new ProductInfo("Ergonomic Keyboard", 89.99, 150, "Technology");
+		ProductManager.addProduct(newProduct9);
+
+		ProductInfo newProduct10 = new ProductInfo("Wireless Mouse", 29.99, 300, "Technology");
+		ProductManager.addProduct(newProduct10);
+
+		ProductInfo newProduct11 = new ProductInfo("Bluetooth Speakers", 49.99, 120, "Technology");
+		ProductManager.addProduct(newProduct11);
+
+		ProductInfo newProduct12 = new ProductInfo("4K Monitor", 399.99, 80, "Technology");
+		ProductManager.addProduct(newProduct12);
+
+		ProductInfo newProduct13 = new ProductInfo("USB-C Hub", 19.99, 250, "Technology");
+		ProductManager.addProduct(newProduct13);
+
+		ProductInfo newProduct14 = new ProductInfo("External Hard Drive", 59.99, 100, "Technology");
+		ProductManager.addProduct(newProduct14);
+
+		ProductInfo newProduct15 = new ProductInfo("Wireless Charger", 29.99, 180, "Technology");
+		ProductManager.addProduct(newProduct15);
+
+		ProductInfo newProduct16 = new ProductInfo("Smartwatch", 199.99, 75, "Technology");
+		ProductManager.addProduct(newProduct16);
+
+		ProductInfo newProduct17 = new ProductInfo("Noise-Cancelling Headphones", 89.99, 110, "Technology");
+		ProductManager.addProduct(newProduct17);
+
+		ProductInfo newProduct18 = new ProductInfo("Cordless Drill", 129.99, 50, "Home Improvement");
+		ProductManager.addProduct(newProduct18);
+
+		ProductInfo newProduct19 = new ProductInfo("Paint Roller Set", 19.99, 80, "Home Improvement");
+		ProductManager.addProduct(newProduct19);
+
+		ProductInfo newProduct20 = new ProductInfo("LED Light Bulbs", 4.99, 150, "Home Improvement");
+		ProductManager.addProduct(newProduct20);
+
+		ProductInfo newProduct21 = new ProductInfo("Electric Screwdriver", 49.99, 40, "Home Improvement");
+		ProductManager.addProduct(newProduct21);
+
+		ProductInfo newProduct22 = new ProductInfo("Garden Hose", 34.99, 60, "Home Improvement");
+		ProductManager.addProduct(newProduct22);
+
+		ProductInfo newProduct23 = new ProductInfo("Hammer", 14.99, 90, "Home Improvement");
+		ProductManager.addProduct(newProduct23);
+
+		ProductInfo newProduct24 = new ProductInfo("Table Saw", 299.99, 30, "Home Improvement");
+		ProductManager.addProduct(newProduct24);
+
+		ProductInfo newProduct25 = new ProductInfo("Wrench Set", 25.99, 70, "Home Improvement");
+		ProductManager.addProduct(newProduct25);
+
+		ProductInfo newProduct26 = new ProductInfo("Ceiling Fan", 89.99, 45, "Home Improvement");
+		ProductManager.addProduct(newProduct26);
+
+		ProductInfo newProduct27 = new ProductInfo("Wall Paint - White", 22.99, 65, "Home Improvement");
+		ProductManager.addProduct(newProduct27);
+
+	}
+}
