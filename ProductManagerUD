@@ -1,0 +1,108 @@
+import java.util.HashMap;
+
+public class ProductManager {
+    private static HashMap<Long, ProductInfo> productDatabase = new HashMap<>(); 
+    private static int lastProductID =0; 
+    
+    //attempted singleton pattern// ----worked in testing, but seemed unecessary will reopen if issues arise with other method. 
+   // protected ProductManager() {
+   //     productDatabase = new HashMap<>();
+    //}
+  //  public static ProductManager getInstance() {
+       // return instance;
+  //  }
+
+    protected static void addProduct(ProductInfo product) {
+    	
+    	long productID = ++lastProductID; 
+        productDatabase.put(productID, product);
+    }
+
+    protected static ProductInfo getProduct(Long productID) {
+        return productDatabase.get(productID);
+    }
+
+    protected static void removeProduct(Long productID) {
+        if(productDatabase.containsKey(productID)) {
+        	productDatabase.remove(productID); 
+        	System.out.println("Product removed successfully.");
+        }
+        else {
+        	System.out.println("No productfound with the given name."); 
+        }
+    }
+   
+        
+    protected static void listAllProducts() {
+        if (productDatabase.isEmpty()) {
+            System.out.println("No products available.");
+        } else {
+            System.out.println("List of all products:");
+            for (Long key : productDatabase.keySet()) {
+                ProductInfo product = productDatabase.get(key);
+                System.out.println("Product Name: " + key + ", " + product.getDescription());
+  
+}}}
+    protected static void listAllProductWithInfo() {
+        if (productDatabase.isEmpty()) {
+            System.out.println("No products available.");
+        } else {
+            System.out.println("List of all products:");
+            for (Long key : productDatabase.keySet()) {
+                ProductInfo product = productDatabase.get(key);
+                System.out.println("Product Name: " + key + ", " + product);
+  
+}}}
+    //Inventory Edits 
+    protected static void editProductInventory(Long productID, int newStock) {
+    	ProductInfo product = productDatabase.get(productID);
+    	if(product != null) {
+    		product.setStock(newStock); 
+    		System.out.println("Inventory updated for product " + productDatabase.get(productID));
+    	}
+    	else {
+    		System.out.println("Product not found in System"); 
+    	}	
+    }
+    protected static void editProductPrice(Long productID, Double newPrice) {
+    	ProductInfo product = productDatabase.get(productID);
+    	if(product != null) {
+    		product.setPrice(newPrice); 
+    		System.out.println("Inventory updated for product " + productDatabase.get(productID));
+    	}
+    	else {
+    		System.out.println("Product not found in System"); 
+    	}	
+    }
+    
+    //Connect to ProductInfo or ClothingInfo to get Categories
+    //category getter connected with the one in ProductInfo that will pull the category of a product 
+    public String getCategory(long productID) {
+    	 ProductInfo product = productDatabase.get(productID);
+    	return product.getCategory(); 
+    }
+   
+    public static Double getPrice(long productID) {
+   	 ProductInfo product = productDatabase.get(productID);
+   	return product.getPrice(); 
+   }
+    public static void searchByCategory(String searchCategory) {
+    	System.out.println("Products in the category " + searchCategory + ":"); 
+    	for(Long key : productDatabase.keySet()) {
+    		ProductInfo product = productDatabase.get(key); 
+    		if(product.getCategory().equalsIgnoreCase(searchCategory)){
+    			System.out.println("Product Name: " + key + ", " + product); 
+    		
+    	}
+    }
+  
+    }}	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    
