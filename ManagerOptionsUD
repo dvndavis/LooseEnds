@@ -1,0 +1,163 @@
+
+import java.util.Scanner;
+public class ManagerOptions {
+	 
+
+	
+	
+	//This class holds the logic for a managers alternative choices
+	
+	protected static void managerChoices(Scanner keyboard) {
+		
+		boolean continueManaging = true; 
+		
+		while(continueManaging) {
+			
+				System.out.println("Hello, Manager, what would you like to do today"); 
+				System.out.println("Options are: ");
+				System.out.println("1. Add Products");
+				System.out.println("2. Remove Products");
+				System.out.println("3. Edit Inventory");
+				System.out.println("4. Edit Price");
+				System.out.println("5. View Email List"); 
+				System.out.println("6. Exit");
+				System.out.print("Enter your choice (1-6): ");
+	    
+	   
+				int choice = keyboard.nextInt();   
+				keyboard.nextLine(); 
+	    
+				
+			switch (choice) {
+			case 1: 
+				addProduct(keyboard);
+				break; 
+			
+			case 2: 
+				removeProduct(keyboard); 
+				break; 
+			
+			case 3: 
+				editInventory(keyboard); 
+				break; 
+			
+			case 4: 
+				editPrice(keyboard);
+				break; 
+				
+			case 5:
+				emailListViewing(keyboard); 
+				if (keyboard.nextLine().contains("co")) {
+				break;
+				}
+			case 6: 
+				System.out.println("returning to main menu"); 
+				continueManaging = false; 
+				break;
+				
+			default: 
+				System.out.println("Invalid choice. Please enter a number between 1 and 6"); 
+				break; 
+			}
+		}
+		}
+			
+			
+	//method used for adding new products 
+	private static void addProduct(Scanner keyboard) {
+		
+			 
+	        System.out.println("You chose to Add a Product.");
+	        System.out.println("Is Product Clothing or Other"); 
+	        
+	        
+	        String ClothOrOther = keyboard.nextLine();
+	        
+	        	if(ClothOrOther.equalsIgnoreCase("Clothing")){
+	        		ClothingInfo.addClothingPrompt(keyboard); 
+	        	}
+	        	else {
+	        		ProductInfo.addProductPrompt(keyboard); 
+	        	}
+	}
+	
+	
+	//method used for removing products 
+	private static void removeProduct(Scanner keyboard) {
+		System.out.println("You chose to Remove Products.");
+		ProductManager.listAllProducts(); 
+		System.out.println("Select and type product you would like to delete"); 
+		
+		Long RemovalProduct = keyboard.nextLong(); 
+		keyboard.nextLine(); 
+		ProductManager.removeProduct(RemovalProduct);
+	
+	}
+	
+	//method used for editing the inventory liek the price one 
+	private static void editInventory(Scanner keyboard) {
+		System.out.println("You chose to Edit Inventory.");
+		ProductManager.listAllProductWithInfo(); 
+		System.out.println("Enter the product ID # of the product you would like to edit"); 
+		
+		long productNum = keyboard.nextLong(); 
+		keyboard.nextLine(); 
+		
+		System.out.println("Enter the new inventory amt as integer"); 
+		
+		int newInventory = keyboard.nextInt(); 
+		keyboard.nextLine(); 
+		
+		ProductManager.editProductInventory(productNum, newInventory);   
+		
+	}
+	
+	//method used for editing the prices n stuff
+	private static void editPrice(Scanner keyboard) {
+
+		System.out.println("You chose to Edit Price.");
+		ProductManager.listAllProductWithInfo(); 
+		System.out.println("Enter the product ID # of the product you would like to edit"); 
+    
+		long productNum = keyboard.nextLong(); 
+		keyboard.nextLine(); 
+    
+		System.out.println("Enter the new price as double"); 
+    
+		Double newPrice = keyboard.nextDouble();
+		keyboard.nextLine(); 
+    
+		ProductManager.editProductPrice(productNum, newPrice);
+		
+	}
+	private static void emailListViewing(Scanner keyboard) {
+		System.out.println("Viewing email list:"); 
+		CustomerOptions.getEmailList(); 
+		System.out.println("type continue to go to menu"); 
+	}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
