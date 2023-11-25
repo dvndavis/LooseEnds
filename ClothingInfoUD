@@ -1,0 +1,73 @@
+import java.util.Scanner; 
+public class ClothingInfo extends ProductInfo {
+	
+    protected  String size;
+    private static String[] sizeOptions = {"XS", "S", "M", "L", "XL", "XXL"}; 
+    
+    // Constructor
+    protected ClothingInfo(String description, double price, int stockAvailable, String category, String size) {
+        super(description, price, stockAvailable, category); // Call to the superclass constructor
+        this.size = size;
+    }
+
+    //Getters and Setters--------------------------------------------------------------------------------------------------
+    
+    //Size get 
+    public String getSize() {
+        return size;
+    }
+    //Size set
+    protected void setSize(String size) {
+        this.size = size;
+    }
+    //--------------------------------------------------------------------------------------------------------------------
+
+    // Override the toString method to include 'size'
+    @Override
+    public String toString() {
+        //return "ClothingInfo{description=" + getDescription() + ", price=" + price + ", stockAvailable=" + stockAvailable + ", size=" + size + "}";
+        return super.toString() + ", size=" + size + "}"; //simplified version
+    }
+    
+    
+    
+   
+    protected static void addClothingPrompt(Scanner keyboard) {
+    	
+    	//Prompts for description
+    	System.out.print("Enter product description: ");
+        String description = keyboard.nextLine();
+       
+        //Prompts for price 
+        System.out.print("Enter product price: ");
+        double price = keyboard.nextDouble();
+        keyboard.nextLine(); 
+        
+        //Prompts for Stock 
+        System.out.print("Enter stock available: ");
+        int stock = keyboard.nextInt();
+        keyboard.nextLine(); // Consume the leftover newline after reading an integer
+        
+        //Prompts for Size-----------------------------------------------------
+        System.out.println("Select a size"); 
+        System.out.println("Available sizes:");
+        for (String option : sizeOptions) {
+            System.out.print(option + " ");
+        }
+        System.out.println();
+        String itemSize = keyboard.nextLine(); 
+        String itemCategory = "Clothing"; 
+        //-------------------------------------------------------------------------
+        
+        //Creates new Clothing Item 
+        ClothingInfo newProduct = new ClothingInfo(description, price, stock, itemCategory, itemSize);
+
+        //adds new ClothingInfo item to the ProductManager database
+        ProductManager.addProduct(newProduct);
+
+        
+        System.out.println("Product added successfully!");
+    	
+    	
+    }
+}
