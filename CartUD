@@ -1,0 +1,63 @@
+import java.util.HashMap; 
+public class Cart {
+//Long is the productID, and the Integer is the quantity of that product
+	private HashMap<Long, Integer> productsInCart; 
+	
+	public Cart() {
+		productsInCart = new HashMap<>(); 
+	}
+	
+	public void addToCart(Long productID) {
+		if(ProductManager.getProduct(productID) == null) {
+		System.out.println("Product does not exist"); 
+		}
+		else if(productsInCart.containsKey(productID)) {
+			productsInCart.put(productID,  productsInCart.get(productID)+1); 
+		} else {
+			productsInCart.put(productID, 1); 
+		}
+		System.out.println("Product #: " + productID + " added to cart"); 
+	}
+	public void viewCart() {
+		//use enhanced for loop to iterate through cart and print keys along with quantities
+		System.out.println("Products in Cart include: ");
+		for(Long key: productsInCart.keySet()) {
+		Integer quantityOf = productsInCart.get(key); 
+		if(productsInCart.get(key) != null) {
+		System.out.println(quantityOf + " of Product ID "+  key + " " + ProductManager.getProduct(key)); 
+		}
+		else {
+		System.out.println("Cart is empty.");
+		}
+	}
+}
+	public double calcCartTotal() {
+		double total = 0.0; 
+		for(Long productID : productsInCart.keySet()) {
+			int quantity = productsInCart.get(productID); 
+			double price = ProductManager.getPrice(productID);
+			total += price*quantity;
+		}
+		return total; 
+	}
+	public void removeFromCart(Long productID, int quantity) {
+		if(!productsInCart.containsKey(productID)) {
+			System.out.println("That's not in there.");
+		}
+		else  {
+			int currentQuantity = productsInCart.get(productID); 
+			if(quantity <= 0) {
+				System.out.println("Still not in there"); 
+			}
+			else if (quantity >= currentQuantity) {
+				productsInCart.remove(productID); 
+				System.out.println("Product #" + productID + " removed from cart"); 
+			}
+			else {
+				productsInCart.put(productID, currentQuantity - quantity); 
+				System.out.println("Quantity of Product #" + productID + " reduced by " + quantity );
+			}
+		}
+	}
+
+}
