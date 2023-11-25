@@ -1,0 +1,110 @@
+import java.util.Scanner; 
+import java.util.ArrayList;
+public class ProductInfo {
+    protected String description; // Changed from 'name' to 'description'
+    protected double price;
+    protected int stockAvailable;
+    protected String category; 
+    protected static ArrayList<String> categories = new ArrayList<>();
+    
+    // Constructor
+    
+    protected ProductInfo(String description, double price, int stockAvailable, String category) {
+      
+    	this.description = description; // Updated to 'description'
+        this.price = price;
+        this.stockAvailable = stockAvailable;
+        this.category = category;   
+    }
+    
+    protected static void addCategory(String category) {
+    	String lowerCaseCategory = category.toLowerCase(); 
+ 
+    	if (!categories.contains(lowerCaseCategory)) {
+    		categories.add(lowerCaseCategory); 
+    		System.out.println("Category " + category + " added successfully."); 
+    	}
+    	else {
+    		System.out.println("Category " + category + " already exists."); 
+    }
+    	}
+   
+ 
+    //helper for the showCategories method 
+    private static void getCategoryList() {
+    	int i; 
+    	for(i =0; i<categories.size(); ++i) {
+    		if(i==categories.size() -1 ) {
+    			System.out.println("and " + categories.get(i)+".");
+    		}
+    		else {
+    		System.out.print(categories.get(i) + ", ");
+    		}
+    	}
+    }
+    
+    public static void showCategories() {
+    	System.out.print("Categories are: ");
+    	ProductInfo.getCategoryList();
+    	System.out.print("Select the category you would like to view");
+    }
+    // Getters and Setters for 'description'
+    protected String getDescription() {
+        return description;
+    }
+
+    protected void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCategory() {
+    	return category; 
+    }
+    
+    //Stock Methods 
+    protected void setStock(int newStock) {
+    	stockAvailable = newStock; 
+    }
+    public int getStock() {
+    	return stockAvailable; 
+    }
+    //Price methods 
+    protected void setPrice(Double newPrice) {
+    	price = newPrice; 
+    }
+    public Double getPrice() {
+    	return price; 
+    }
+    
+    
+    // Updated toString method
+    @Override
+    public String toString() {
+        return "ProductInfo{description=" + description + ", price=" + price + ", stockAvailable=" + stockAvailable + "}";
+    }
+    
+    
+    protected static void addProductPrompt(Scanner keyboard) {
+    	System.out.print("Enter product description: ");
+        String description = keyboard.nextLine();
+    
+        System.out.print("Enter product price: ");
+        double price = keyboard.nextDouble();
+
+        System.out.print("Enter stock available: ");
+        int stock = keyboard.nextInt();
+        keyboard.nextLine(); // Consume the leftover newline after reading an integer
+        
+        System.out.println("Enter the category of Product");
+        System.out.println("Options are:"); 
+        ProductInfo.getCategoryList(); 
+        String selectedCategory = keyboard.nextLine().toLowerCase(); 
+        
+        ProductInfo newProduct = new ProductInfo(description, price, stock, selectedCategory) ;
+        //newProduct = new ProductInfo(description, price, stock);
+
+        ProductManager.addProduct(newProduct);
+
+        System.out.println("Product added successfully!");
+    }
+}
